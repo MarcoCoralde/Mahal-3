@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Marco</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<Style>
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0f7fa; /* Updated background color */
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent scrolling due to hearts */
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Added padding for responsive design */
+}
+
+
+
+.message {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.5;
+    word-wrap: break-word;
+    opacity: 1;
+    max-width: 400px;
+    
+
+}
+
+/* Media query for small devices (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .message {
+    margin: 20px auto;
+    padding: 10px;
+  }
+}
+
+/* Media query for extra small devices (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+  .message {
+    margin: 10px auto;
+    padding: 5px;
+  }
+  .message h2 {
+    font-size: 18px;
+  }
+  .message p {
+    font-size: 14px;
+  }
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+/* Media query for small devices (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  .image-container {
+    width: 90%; /* Increased width for smaller screens */
+  }
+}
+
+/* Media query for extra small devices (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+  .image-container {
+    width: 95%; /* Increased width for extra small screens */
+  }
+}
+
+.image-container video {
+    width: 100px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between boxes */
+    margin-top: 20px;
+}
+
+.countdown-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.countdown-box span {
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.countdown-box .label {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+.button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Heart animation styles */
+.heart {
+    position: absolute;
+    top: -10%;
+    color: #00bcd4; /* Light blue color for the hearts */
+    font-size: 2rem;
+    animation: fall linear infinite;
+    user-select: none;
+}
+
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+</Style>
+<body>
+    <div class="container">
+        <div class="message-container">
+            <div class="message">
+               Alam ko malungkot ka mahal. Babawi ako sa susunod. Sa ngayon eto muna yung ibibigay ko. 
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="sad.gif" alt="Sad GIF" width="300" height="auto">
+        </div>
+        
+        <button class="button" onclick="redirectToLink()">Next</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+<Script>
+
+// Function to create a heart element
+// Function to create a heart element
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.innerHTML = '❤️';
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 6 + 4 + 's'; // Increased the duration
+    heart.style.opacity = 0; // Make the heart invisible initially
+
+    // Randomly increase the font size of the heart
+    if (Math.random() < 0.2) { // 20% chance of a big heart
+        heart.style.fontSize = '4rem';
+    } else {
+        heart.style.fontSize = '2rem';
+    }
+
+    document.body.appendChild(heart);
+
+    // Animate the heart to appear and fall
+    setTimeout(() => {
+        heart.style.opacity = 1; // Make the heart visible
+    }, 100); // Delay the appearance by 100ms
+
+    // Remove the heart after it falls
+    setTimeout(() => {
+        heart.remove();
+    }, 7000); // Increased the timeout to match the new animation duration
+}
+
+// Function to redirect to a link
+function redirectToLink() {
+    window.location.href = 'https://iadoreyoutae.carrd.co/';
+}
+
+// Create hearts every 300ms
+setInterval(createHeart, 700);
+
+// Fixed start date (145 days, 21 hours, 32 minutes, and 0 seconds in the past)
+const startDate = new Date();
+startDate.setDate(startDate.getDate() - 147);
+startDate.setHours(startDate.getHours() - 21);
+startDate.setMinutes(startDate.getMinutes() - 30);
+startDate.setSeconds(startDate.getSeconds() - 0);
+
+// Update the countup every 1 second
+const countupFunction = setInterval(() => {
+    // Get today's date and time
+    const now = new Date().getTime();
+
+    // Find the distance between now and the start date
+    const distance = now - startDate;
+
+    // Time calculations for days, hours, minutes, and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the countdown boxes
+    document.getElementById("days").innerText = String(days).padStart(2, '0');
+    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+}, 1000);
+</Script>
+</html>
